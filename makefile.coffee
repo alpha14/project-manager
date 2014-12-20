@@ -5,7 +5,7 @@ colors = require 'colors'
 path = process.cwd()
 
 # Todo : parse user data from env + from the .projet at the root of the directory
-login = 'user'
+login = process.env.LOGNAME || process.env.USER
 projectName = 'test'
 binaryName = 'test'
 mail = 'test@test.eu'
