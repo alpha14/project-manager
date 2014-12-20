@@ -1,0 +1,21 @@
+{
+    "name": "tekinator",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.coffee",
+    "scripts": {
+	"start": "coffee main.coffee"
+    },
+    "author": "Alpha14",
+    "license": "GPL",
+    "dependencies": {
+	"colors": "^1.0.3",
+	"commander": "^2.3.0",
+	"moment": "^2.8.4",
+	"recursive-readdir": "^1.2.0"
+    },
+    "repository": {
+	"type": "git",
+	"url": "http://github.com/alpha14/tekinator.git"
+    }
+}
