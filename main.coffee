@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 program = require 'commander'
 recursive = require 'recursive-readdir'
 moment = require 'moment'
@@ -29,7 +31,7 @@ makefile = () ->
 
         # If no C file was found
         if list.length is 0
-            console.log 'error : No C files found in directory'.red
+            console.error 'error : No C files found in directory'.red
             return
 
         # Adding header
