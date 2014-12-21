@@ -6,6 +6,8 @@ path = process.cwd()
 
 module.exports = (project) ->
 
+    # Todo:
+    # CFLAGS with include and LDFLAGS
     login = project.login or process.env.LOGNAME or process.env.USER
     projectName = project.name
     binaryName = project.binary
