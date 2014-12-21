@@ -7,25 +7,28 @@
 
 ## Requirements
 - Nodejs
+- Npm
 
 ##Installation
-
-###With root:
+```bash
+git clone https://github.com/alpha14/tekinator.git && cd tekinator
+```
+####With root:
 ```bash
 sudo npm install -g coffee-script
 npm install
 ```
-###Withoot root:
+####Withoot root:
 ```bash
 npm install
 ```
 
 ## Usage
-###With root:
+####With root:
 ```bash
 coffee main.coffee
 ```
-###Withoot root:
+####Withoot root:
 ```bash
 ./node_modules/.bin/coffee main.coffee
 ```
