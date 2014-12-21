@@ -27,6 +27,7 @@ genProject = (name, binaryName) ->
                 console.log 'Project created'
 
 parseFile = (callback) ->
+
     if fs.existsSync(path + '/' + '.project')
         rawData =  fs.readFileSync path + '/' + '.project'
         try

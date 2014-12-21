@@ -22,7 +22,7 @@ sudo npm install -g coffee-script
 ## Usage
 With coffee-script globally installed:
 ```bash
-coffee main.coffee
+./main.coffee
 ```
 Without it:
 ```bash

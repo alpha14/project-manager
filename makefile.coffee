@@ -4,9 +4,6 @@ fs = require "fs"
 colors = require 'colors'
 path = process.cwd()
 
-# Todo : parse user data from env + from the .projet at the root of the directory
-
-
 module.exports = (project) ->
 
     login = project.login or process.env.LOGNAME or process.env.USER
