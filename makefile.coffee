@@ -5,13 +5,14 @@ colors = require 'colors'
 path = process.cwd()
 
 # Todo : parse user data from env + from the .projet at the root of the directory
-login = process.env.LOGNAME || process.env.USER
-projectName = 'test'
-binaryName = 'test'
-mail = 'test@test.eu'
 
-module.exports = () ->
 
+module.exports = (project) ->
+
+    login = project.login or process.env.LOGNAME or process.env.USER
+    projectName = project.name
+    binaryName = project.binary
+    mail = "#{login}@epitech.eu"
     console.log "building makefile...".blue
     # Retrieve all files in the directory
     recursive path, (err, files) ->
@@ -21,7 +22,6 @@ module.exports = () ->
         for file in files
             if file.substring(file.length - 2, file.length) is '.c'
                 list.push file
-        console.log list
 
         # If no C file was found
         if list.length is 0
