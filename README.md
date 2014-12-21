@@ -12,23 +12,19 @@
 ##Installation
 ```bash
 git clone https://github.com/alpha14/tekinator.git && cd tekinator
+npm install
 ```
-####With root:
+If you are root you can install coffee-script globally:
 ```bash
 sudo npm install -g coffee-script
-npm install
-```
-####Withoot root:
-```bash
-npm install
-```
 
+```
 ## Usage
-####With root:
+With coffee-script globally installed:
 ```bash
 coffee main.coffee
 ```
-####Withoot root:
+Without it:
 ```bash
 ./node_modules/.bin/coffee main.coffee
 ```
