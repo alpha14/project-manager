@@ -1,5 +1,4 @@
 recursive = require 'recursive-readdir'
-moment = require 'moment'
 fs = require "fs"
 colors = require 'colors'
 lib = require './lib'
@@ -14,6 +13,7 @@ module.exports = (project) ->
     binaryName = project.binary
     mail = "#{login}@epitech.eu"
     console.log "building makefile...".blue
+
     # Retrieve all files in the directory
     recursive path, (err, files) ->
 
