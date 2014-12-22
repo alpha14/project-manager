@@ -2,6 +2,7 @@ recursive = require 'recursive-readdir'
 moment = require 'moment'
 fs = require "fs"
 colors = require 'colors'
+lib = require './lib'
 path = process.cwd()
 
 module.exports = (project) ->
@@ -28,10 +29,8 @@ module.exports = (project) ->
             return
 
         # Adding header
-        data = "##\n## Makefile for #{projectName} in #{path}\n##\n## Made b" +
-        "y #{login}\n## Login   <#{mail}>\n##\n## Started on  " +
-        "#{moment().format("MMM D hh:mm:ss YYYY")} #{login}\n## Last update " +
-        "#{moment().format("MMM D hh:mm:ss YYYY")} #{login}\n##\n\n"
+        data = lib.commentHeader(projectName, path, login, mail)
+
         data += "CC\t=\tcc\n\nNAME\t=\t#{binaryName}\n\nSRC\t=\t"
 
         # Inserting C files
