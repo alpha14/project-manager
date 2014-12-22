@@ -41,7 +41,7 @@ module.exports = (project) ->
 
         # Adding the rest of the makefile
         data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\nall:\t\t$(NAME)\n\n$(NAME):\t$(" +
-        "SRC)\n\t\t$(CC) -o $(NAME) $(SRC)\n\nclean:\t\trm -rf $(SRC)\n\nfcl" +
+        "OBJ)\n\t\t$(CC) -o $(NAME) $(SRC)\n\nclean:\t\trm -rf $(SRC)\n\nfcl" +
         "ean:\t\tclean\n\t\trm -rf $(NAME)\n\nre:\t\tfclean all\n\n.PHONY:\t" +
         "\tall clean fclean re\n"
 
