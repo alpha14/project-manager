@@ -18,18 +18,17 @@ parseFile = (callback) ->
         try
             project = JSON.parse rawData
         catch error
-            console.error 'Error while parsing .project file'
+            err =  'Error while parsing .project file'
         if not project.mail?
             project['mail'] = "#{project.login}@epitech.eu"
         if project.name? and project.binary? and project.login?
-
-            callback project
+            callback null, project
         else
-            console.error 'Error : Missing data in .project'.red
-            callback null
+            err =  'Error : Missing data in .project'.red
+            callback err
     else
-        console.error 'Error: project file not found'.red
-        callback null
+        err =  'Error: project file not found'.red
+        callback err
 
 program
    .version(version)
@@ -50,16 +49,20 @@ program
     .command("makefile")
     .description("Generate Makefile")
     .action ->
-        parseFile (project) ->
-            if project?
+        parseFile (err, project) ->
+            if err?
+                console.error err
+            else
                 makefile(project)
 
 program
     .command("header")
     .description("Generate header file")
     .action ->
-        parseFile (project) ->
-            if project?
+        parseFile (err, project) ->
+            if err?
+                console.error err
+            else
                 header(project)
 # program
 #    .command("replace <arg1> <arg2> <path>")
