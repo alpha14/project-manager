@@ -40,10 +40,15 @@ module.exports = (project) ->
             if i isnt list.length-1 then data += ' \\'
 
         # Adding the rest of the makefile
-        data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\nall:\t\t$(NAME)\n\n$(NAME):\t$(" +
-        "OBJ)\n\t\t$(CC) -o $(NAME) $(SRC)\n\nclean:\t\trm -rf $(SRC)\n\nfcl" +
-        "ean:\t\tclean\n\t\trm -rf $(NAME)\n\nre:\t\tfclean all\n\n.PHONY:\t" +
-        "\tall clean fclean re\n"
+        data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\n" +
+        "all:\t\t$(NAME)\n\n" +
+        "$(NAME):\t$(OBJ)\n" +
+        "\t\t$(CC) -o $(NAME) $(SRC)\n\n" +
+        "clean:\n\t\trm -rf $(OBJ)\n\n" +
+        "fclean:\t\tclean\n" +
+        "\t\trm -rf $(NAME)\n\n" +
+        "re:\t\tfclean all\n\n" +
+        ".PHONY:\t\tall clean fclean re\n"
 
         # Write the file
         fs.writeFile path + '/Makefile', data, (err) ->
