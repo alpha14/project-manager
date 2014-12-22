@@ -8,7 +8,7 @@ module.exports = (project) ->
 
     # Todo:
     # CFLAGS with include and LDFLAGS
-    login = project.login or process.env.LOGNAME or process.env.USER
+    login = project.login
     projectName = project.name
     binaryName = project.binary
     mail = "#{login}@epitech.eu"
