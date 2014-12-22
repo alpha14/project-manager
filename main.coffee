@@ -7,6 +7,7 @@ colors = require 'colors'
 pkg = require './package.json'
 version = pkg.version
 makefile = require './makefile'
+header = require './header'
 path = process.cwd()
 
 genProject = (name, binaryName) ->
@@ -66,7 +67,13 @@ program
             if project?
                 makefile(project)
 
-
+program
+    .command("header")
+    .description("Generate header file")
+    .action ->
+        parseFile (project) ->
+            if project?
+                header(project)
 # program
 #    .command("replace <arg1> <arg2> <path>")
 #    .description("Bleh")
