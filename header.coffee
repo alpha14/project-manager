@@ -7,10 +7,9 @@ path = process.cwd()
 module.exports = (project) ->
 
     projectName = project.name
-    mail = "#{login}@epitech.eu"
     console.log "Creating the header file #{projectName}.h ...".blue
 
-    data = lib.commentHeader(projectName, path, project.login, mail)
+    data = lib.commentHeader(project, path)
 
     data += "#ifndef _#{projectName}_H_" +
     "\n# define _#{projectName}_H_" +

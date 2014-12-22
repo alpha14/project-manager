@@ -19,7 +19,10 @@ parseFile = (callback) ->
             project = JSON.parse rawData
         catch error
             console.error 'Error while parsing .project file'
+        if not project.mail?
+            project['mail'] = "#{project.login}@epitech.eu"
         if project.name? and project.binary? and project.login?
+
             callback project
         else
             console.error 'Error : Missing data in .project'.red

@@ -11,7 +11,6 @@ module.exports = (project) ->
     login = project.login
     projectName = project.name
     binaryName = project.binary
-    mail = "#{login}@epitech.eu"
     console.log "building makefile...".blue
 
     # Retrieve all files in the directory
@@ -29,7 +28,7 @@ module.exports = (project) ->
             return
 
         # Adding header
-        data = lib.commentHeader(projectName, path, login, mail)
+        data = lib.commentHeader(project, path)
 
         data += "CC\t=\tcc\n\nNAME\t=\t#{binaryName}\n\nSRC\t=\t"
 
