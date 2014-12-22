@@ -8,6 +8,7 @@ pkg = require './package.json'
 version = pkg.version
 makefile = require './makefile'
 genProject = require './genproject'
+header = require './header'
 path = process.cwd()
 
 parseFile = (callback) ->
@@ -18,10 +19,10 @@ parseFile = (callback) ->
             project = JSON.parse rawData
         catch error
             console.error 'Error while parsing .project file'
-        if project.name? and project.binary?
+        if project.name? and project.binary? and project.login?
             callback project
         else
-            console.error 'Error : project and binary names are mandatory'.red
+            console.error 'Error : Missing data in .project'.red
             callback null
     else
         console.error 'Error: project file not found'.red
@@ -50,7 +51,13 @@ program
             if project?
                 makefile(project)
 
-
+program
+    .command("header")
+    .description("Generate header file")
+    .action ->
+        parseFile (project) ->
+            if project?
+                header(project)
 # program
 #    .command("replace <arg1> <arg2> <path>")
 #    .description("Bleh")
