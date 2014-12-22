@@ -7,24 +7,8 @@ colors = require 'colors'
 pkg = require './package.json'
 version = pkg.version
 makefile = require './makefile'
+genProject = require './genproject'
 path = process.cwd()
-
-genProject = (name, binaryName) ->
-
-    if fs.existsSync(path + '/' + '.project')
-        console.error 'Project already existing'
-    else
-        console.log 'Generating project...'
-        data =
-            name: name
-            binary: binaryName
-
-        fileData = JSON.stringify data
-        fs.writeFile path + '/' + '.project', fileData, (err) ->
-            if err?
-                console.error err.red
-            else
-                console.log 'Project created'
 
 parseFile = (callback) ->
 
