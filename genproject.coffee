@@ -6,6 +6,7 @@ path = process.cwd()
 
 module.exports = (name, binaryName) ->
 
+    # Get login from env
     login = process.env.LOGIN or process.env.LOGNAME or process.env.USER
 
     if fs.existsSync(path + '/' + '.project')
