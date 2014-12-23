@@ -67,6 +67,8 @@ program
     .action ->
         parseFile (err, project) ->
             if err?
+                console.error err.red
+            else
                 recursive path, (err, files) ->
                     if err?
                         console.error err.red
