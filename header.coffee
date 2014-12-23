@@ -9,7 +9,7 @@ module.exports = (project, files) ->
     console.log "Creating the header file #{projectName}.h ...".blue
 
     list = []
-    regex = /(.*)\t(.*)[(](.*)[)]/g
+    regex = /.*\t.*\(.*\)/g
     for file in files
         if file.substring(file.length - 2, file.length) is '.c'
             console.log file
