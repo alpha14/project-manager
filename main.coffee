@@ -3,6 +3,7 @@
 program = require 'commander'
 moment = require 'moment'
 fs = require "fs"
+recursive = require 'recursive-readdir'
 colors = require 'colors'
 pkg = require './package.json'
 version = pkg.version
@@ -18,16 +19,17 @@ parseFile = (callback) ->
         try
             project = JSON.parse rawData
         catch error
-            err =  'Error while parsing .project file'
+            err = 'Error while parsing .project file'
+            callback err
         if not project.mail?
             project['mail'] = "#{project.login}@epitech.eu"
         if project.name? and project.binary? and project.login?
             callback null, project
         else
-            err =  'Error : Missing data in .project'.red
+            err = 'Error : Missing data in .project'
             callback err
     else
-        err =  'Error: project file not found'.red
+        err = 'Error: project file not found'
         callback err
 
 program
@@ -51,9 +53,13 @@ program
     .action ->
         parseFile (err, project) ->
             if err?
-                console.error err
+                console.error err.red
             else
-                makefile(project)
+                recursive path, (err, files) ->
+                    if err?
+                        console.error err.red
+                    else
+                        makefile(project, files)
 
 program
     .command("header")
@@ -61,9 +67,11 @@ program
     .action ->
         parseFile (err, project) ->
             if err?
-                console.error err
-            else
-                header(project)
+                recursive path, (err, files) ->
+                    if err?
+                        console.error err.red
+                    else
+                        header(project, files)
 # program
 #    .command("replace <arg1> <arg2> <path>")
 #    .description("Bleh")

@@ -1,10 +1,9 @@
-recursive = require 'recursive-readdir'
 fs = require "fs"
 colors = require 'colors'
 lib = require './lib'
 path = process.cwd()
 
-module.exports = (project) ->
+module.exports = (project, files) ->
 
     projectName = project.name
     console.log "Creating the header file #{projectName}.h ...".blue
