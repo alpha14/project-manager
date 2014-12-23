@@ -29,7 +29,16 @@ module.exports = (project, files) ->
     # Adding header
     data = lib.commentHeader(project, path, "Makefile")
 
-    data += "CC\t=\tcc\n\nNAME\t=\t#{binaryName}\n\nCFLAGS\t=\t#{CFLAGS}\n\nLDFLAGS\t=\t#{LDFLAGS}\n\nSRC\t=\t"
+    data += "CC\t=\tcc\n\n"
+    data += "NAME\t=\t#{binaryName}\n\n"
+
+    if CFLAGS? and CFLAGS isnt ""
+        data += "CFLAGS\t=\t#{CFLAGS}\n\n"
+
+    if LDFLAGS? and LDFLAGS isnt ""
+        data += "LDFLAGS\t=\t#{LDFLAGS}\n\n"
+
+    data += "SRC\t=\t"
 
     # Inserting C files
     for file, i in list

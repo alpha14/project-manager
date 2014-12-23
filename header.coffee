@@ -16,7 +16,7 @@ module.exports = (project, files) ->
             rawContent = fs.readFileSync file, 'utf8'
             content = rawContent.split '\n'
             for value in content
-                if regex.test(value) and not ~value.indexOf("\tmain(") and not ~value.indexOf(";") and not ~value.indexOf("+") and not ~value.indexOf("\if (") and not ~value.indexOf("\while (")
+                if regex.test(value) and not ~value.indexOf("\tmain(")
                     list.push value
     #
     # Todo: check for list = 0
