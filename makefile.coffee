@@ -5,25 +5,23 @@ path = process.cwd()
 
 module.exports = (project, files) ->
 
-    # Todo:
     login = project.login
     projectName = project.name
     binaryName = project.binary
     CFLAGS = project.CFLAGS
     LDFLAGS = project.LDFLAGS
-    console.log "building makefile...".blue
 
-    # Retrieve all files in the directory
+    console.log "Building makefile...".blue
 
     list = []
-    # Pick only C files
+    # Retrieve only C files
     for file in files
         if file.substring(file.length - 2, file.length) is '.c'
             list.push file
 
     # If no C file was found
     if list.length is 0
-        console.log 'error : No C files found in directory'.red
+        console.log 'No C files found in directory'
         return
 
     # Adding header
@@ -44,7 +42,7 @@ module.exports = (project, files) ->
     for file, i in list
         if i isnt 0 then data += '\n\t\t'
         data += file.substring(path.length + 1, file.length)
-        if i isnt list.length-1 then data += ' \\'
+        if i isnt list.length - 1 then data += ' \\'
 
     # Adding the rest of the makefile
     data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\n" +
@@ -60,6 +58,6 @@ module.exports = (project, files) ->
     # Write the file
     fs.writeFile path + '/Makefile', data, (err) ->
         if err?
-            console.log err.red
+            console.error err.red
         else
             console.log 'file saved'.blue
