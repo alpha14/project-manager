@@ -4,6 +4,7 @@ module.exports =
 
     commentHeader: (project, path, file_name, extension) ->
         now = moment()
+        dateFormat = 'ddd MMM D HH:mm:ss YYYY'
 
         if (extension == '.h' or extension == '.c')
             C_START = "/*"
@@ -18,8 +19,8 @@ module.exports =
         "#{C_MID}\n" +
         "#{C_MID} Made by #{project.login}\n" +
         "#{C_MID} Login   <#{project.mail}>\n" +
-        "#{C_MID}\n#{C_MID} Started on  #{now.format("MMM D hh:mm:ss YYYY")} #{project.login}\n" +
-        "#{C_MID} Last_update #{now.format("MMM D hh:mm:ss YYYY")} #{project.login}\n" +
+        "#{C_MID}\n#{C_MID} Started on  #{now.format(dateFormat)} #{project.login}\n" +
+        "#{C_MID} Last update #{now.format(dateFormat)} #{project.login}\n" +
         "#{C_END}\n\n"
 
         return data
