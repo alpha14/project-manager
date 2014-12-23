@@ -2,5 +2,6 @@ node_modules
 Makefile
 .project
 *.c
+*.o
 *.h
 auteur
