@@ -18,7 +18,8 @@ module.exports = (name, binaryName) ->
             name: name
             binary: binaryName
             login: login
-
+            LDFLAGS: ""
+            CFLAGS: "-I./"
         fileData = JSON.stringify data
         fs.writeFile path + '/' + '.project', fileData, (err) ->
             if err?

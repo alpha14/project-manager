@@ -6,10 +6,11 @@ path = process.cwd()
 module.exports = (project, files) ->
 
     # Todo:
-    # CFLAGS with include and LDFLAGS
     login = project.login
     projectName = project.name
     binaryName = project.binary
+    CFLAGS = project.CFLAGS
+    LDFLAGS = project.LDFLAGS
     console.log "building makefile...".blue
 
     # Retrieve all files in the directory
@@ -26,9 +27,9 @@ module.exports = (project, files) ->
         return
 
     # Adding header
-    data = lib.commentHeader(project, path)
+    data = lib.commentHeader(project, path, "Makefile")
 
-    data += "CC\t=\tcc\n\nNAME\t=\t#{binaryName}\n\nSRC\t=\t"
+    data += "CC\t=\tcc\n\nNAME\t=\t#{binaryName}\n\nCFLAGS\t=\t#{CFLAGS}\n\nLDFLAGS\t=\t#{LDFLAGS}\n\nSRC\t=\t"
 
     # Inserting C files
     for file, i in list
@@ -40,7 +41,7 @@ module.exports = (project, files) ->
     data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\n" +
     "all:\t\t$(NAME)\n\n" +
     "$(NAME):\t$(OBJ)\n" +
-    "\t\t$(CC) -o $(NAME) $(SRC)\n\n" +
+    "\t\t$(CC) -o $(NAME) $(SRC) $(LDFLAGS)\n\n" +
     "clean:\n\t\trm -rf $(OBJ)\n\n" +
     "fclean:\t\tclean\n" +
     "\t\trm -rf $(NAME)\n\n" +
