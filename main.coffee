@@ -2,7 +2,7 @@
 
 program = require 'commander'
 moment = require 'moment'
-fs = require "fs"
+fs = require 'fs'
 recursive = require 'recursive-readdir'
 colors = require 'colors'
 pkg = require './package.json'
@@ -37,15 +37,10 @@ program
    .usage('<command> [<args>]')
 
 program
-    .command("new [name] [binaryName]")
+    .command("new")
     .description("Create a new project")
-    .action (name, binaryName) ->
-        if name? and binaryName?
-            genProject name, binaryName
-        else
-            console.error 'Not enough arguments'
-            console.error 'prompt not implemented yet'
-
+    .action () ->
+        genProject.parseInput()
 
 program
     .command("makefile")
