@@ -17,32 +17,36 @@ module.exports =
             output: process.stdout
         rl = readline.createInterface io
 
+        defaultCflags = '-W -Werror -Wall -Wextra -ansi -pedantic -I .'
         defaultName = __dirname.split('/').pop()
-        rl.question "Project name (default #{defaultName}) ?", (name) =>
+        rl.question "Project name: (#{defaultName}) ", (name) =>
 
-            rl.question "Binary name (default a.out) ?", (binary) =>
-                rl.close()
-                if name is '' then name = defaultName
-                if binary is '' then binary = 'a.out'
-                data =
-                    name: name
-                    binary: binary
-                    login: login
-                    LDFLAGS: ''
-                    CFLAGS: '-I./'
-                fileData = JSON.stringify data
-                @createFile fileData
+            rl.question "Binary name: (a.out) ", (binary) =>
+                rl.question "CFLAGS: (#{defaultCflags}) ", (cflags) =>
+                    rl.question "LDFLAGS: (none) ", (ldflags) =>
 
-    createFile: (data) ->
+                        data =
+                            name: if name is '' then defaultName else name
+                            binary: if binary is '' then 'a.out' else binary
+                            login: login
+                            CFLAGS: if cflags is '' then defaultCflags else cflags
+                            LDFLAGS: if ldflags is '' then '' else ldflags
 
-        if fs.existsSync(path + '/' + '.project')
-            console.error 'Project already existing'
-        else
-            console.log 'Generating project...'
+                        fileData = JSON.stringify data, null, 2
+                        console.log "\n" + fileData
+                        rl.question '\n\nIs this ok? (yes) ', (answer) =>
+                            rl.pause()
+                            if answer is 'yes' or answer is '' or answer is 'y'
+                                @createFile fileData
+                            else
+                                console.log 'Aborted'.red
 
 
-            fs.writeFile path + '/' + '.project', data, (err) ->
-                if err?
-                    console.error err.red
-                else
-                    console.log 'Project created'
+
+    createFile: (fileData) ->
+
+        fs.writeFile path + '/' + '.project', fileData, (err) ->
+            if err?
+                console.error err.red
+            else
+                console.log 'Project created'.green
