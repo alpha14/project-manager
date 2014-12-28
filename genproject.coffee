@@ -36,7 +36,8 @@ module.exports =
                         console.log "\n" + fileData
                         rl.question '\n\nIs this ok? (yes) ', (answer) =>
                             rl.pause()
-                            if answer is 'yes' or answer is '' or answer is 'y'
+                            answers = ['', 'y', 'ye', 'yes']
+                            if answer.toLowerCase() in answers
                                 @createFile fileData
                             else
                                 console.log 'Aborted'.red
