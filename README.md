@@ -15,7 +15,7 @@ git clone https://github.com/alpha14/tekinator.git && cd tekinator
 npm install
 ```
 ## Usage
-With coffee-script globally installed:
+
 ```bash
 ./tek
 ```
