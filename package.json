@@ -2,9 +2,9 @@
   "name": "tekinator",
   "version": "1.0.0",
   "description": "",
-  "main": "main.coffee",
+  "main": "./tek",
   "scripts": {
-    "start": "coffee main.coffee"
+    "start": "./tek"
   },
   "author": [
     "Alpha14",

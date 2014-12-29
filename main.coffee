@@ -1,5 +1,3 @@
-#!/usr/bin/env coffee
-
 program = require 'commander'
 moment = require 'moment'
 fs = require 'fs'
