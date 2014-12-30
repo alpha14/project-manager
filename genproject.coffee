@@ -18,11 +18,14 @@ module.exports =
         rl = readline.createInterface io
 
         defaultCflags = '-W -Werror -Wall -Wextra -ansi -pedantic -I .'
+        # Name of the directory
         defaultName = __dirname.split('/').pop()
         rl.question "Project name: (#{defaultName}) ", (name) =>
 
             rl.question "Binary name: (a.out) ", (binary) =>
+
                 rl.question "CFLAGS: (#{defaultCflags}) ", (cflags) =>
+
                     rl.question "LDFLAGS: (none) ", (ldflags) =>
 
                         data =
@@ -30,7 +33,7 @@ module.exports =
                             binary: if binary is '' then 'a.out' else binary
                             login: login
                             CFLAGS: if cflags is '' then defaultCflags else cflags
-                            LDFLAGS: if ldflags is '' then '' else ldflags
+                            LDFLAGS: ldflags
 
                         fileData = JSON.stringify data, null, 2
                         console.log "\n" + fileData
@@ -41,7 +44,6 @@ module.exports =
                                 @createFile fileData
                             else
                                 console.log 'Aborted'.red
-
 
 
     createFile: (fileData) ->
