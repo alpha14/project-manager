@@ -12,15 +12,16 @@ module.exports = (project, files) ->
     regex = /.*\t.*\(.*\)/g
     for file in files
         if file.substring(file.length - 2, file.length) is '.c'
-            console.log file
             rawContent = fs.readFileSync file, 'utf8'
             content = rawContent.split '\n'
             for value in content
                 if regex.test(value) and not ~value.indexOf("\tmain(")
                     list.push value
-    #
-    # Todo: check for list = 0
-    #
+
+    if list.length is 0
+        console.error 'No C files found in the directory'
+        return
+
     data = lib.commentHeader(project, path, "#{projectName}.h", '.h')
 
     data += "#ifndef #{projectName.toUpperCase()}_H_" +
