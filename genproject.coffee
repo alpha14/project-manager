@@ -19,7 +19,7 @@ module.exports =
 
         defaultCflags = '-W -Werror -Wall -Wextra -ansi -pedantic -I .'
         # Name of the directory
-        defaultName = __dirname.split('/').pop()
+        defaultName = path.split('/').pop()
         rl.question "Project name: (#{defaultName}) ", (name) =>
 
             rl.question "Binary name: (a.out) ", (binary) =>
