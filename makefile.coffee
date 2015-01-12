@@ -48,7 +48,7 @@ module.exports = (project, files) ->
     data += "\n\nOBJ\t=\t$(SRC:.c=.o)\n\n" +
     "all:\t\t$(NAME)\n\n" +
     "$(NAME):\t$(OBJ)\n" +
-    "\t\t$(CC) -o $(NAME) $(SRC)"
+    "\t\t$(CC) -o $(NAME) $(OBJ)"
     if LDFLAGS and LDFLAGS isnt '' then data += " $(LDFLAGS)"
     data += "\n\n" +
     "clean:\n\t\trm -rf $(OBJ)\n\n" +
