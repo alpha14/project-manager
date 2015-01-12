@@ -51,9 +51,9 @@ module.exports = (project, files) ->
     "\t\t$(CC) -o $(NAME) $(OBJ)"
     if LDFLAGS and LDFLAGS isnt '' then data += " $(LDFLAGS)"
     data += "\n\n" +
-    "clean:\n\t\trm -rf $(OBJ)\n\n" +
+    "clean:\n\t\trm -f $(OBJ)\n\n" +
     "fclean:\t\tclean\n" +
-    "\t\trm -rf $(NAME)\n\n" +
+    "\t\trm -f $(NAME)\n\n" +
     "re:\t\tfclean all\n\n" +
     ".PHONY:\t\tall clean fclean re\n"
 
