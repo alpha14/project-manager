@@ -1,7 +1,11 @@
 node_modules
 Makefile
 .project
+a.out
 *.c
+*.cpp
 *.o
 *.h
+*.hh
+*.hpp
 auteur
