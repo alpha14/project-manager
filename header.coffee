@@ -6,12 +6,18 @@ path = process.cwd()
 module.exports = (project, files) ->
 
     projectName = project.name
-    console.log "Creating the header file #{projectName}.h ...".blue
+    lang = project.lang
 
+    if lang is 'c'
+        ext = 'h'
+    if lang is 'cpp'
+        ext = 'hpp'
+
+    console.log "Creating the header file #{projectName}.#{ext} ...".blue
     list = []
     regex = /.*\t.*\(.*\)/g
     for file in files
-        if file.substring(file.length - 2, file.length) is '.c'
+        if file.substring(file.length - (lang.length + 1), file.length) is '.' + lang
             rawContent = fs.readFileSync file, 'utf8'
             content = rawContent.split '\n'
             for value in content
@@ -19,20 +25,21 @@ module.exports = (project, files) ->
                     list.push value
 
     if list.length is 0
-        console.error 'No C files found in the directory'
-        return
+        console.error 'No functions found in the directory'
 
-    data = lib.commentHeader(project, path, "#{projectName}.h", '.h')
+    data = lib.commentHeader(project, path, "#{projectName}.#{ext}", '.h')
 
-    data += "#ifndef #{projectName.toUpperCase()}_H_" +
-    "\n# define #{projectName.toUpperCase()}_H_\n\n"
+    data += "#ifndef #{projectName.toUpperCase()}_#{ext.toUpperCase()}_" +
+    "\n\n# define #{projectName.toUpperCase()}_#{ext.toUpperCase()}_\n\n"
 
     for item in list
         data += "#{item};\n"
-    data += "\n#endif /* !#{projectName.toUpperCase()}_H_ */"
+    data += "\n#endif /* !#{projectName.toUpperCase()}_#{ext.toUpperCase()}_ */"
 
-    fs.writeFile path + '/' + "#{projectName}.h", data, (err) ->
+    fs.writeFile path + '/' + "#{projectName}.#{ext}", data, (err) ->
         if err?
             console.error err.red
+            process.exit 1
         else
             console.log 'file saved'.blue
+            process.exit 0
