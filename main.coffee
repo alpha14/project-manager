@@ -35,15 +35,15 @@ program
    .usage('<command> [<args>]')
 
 program
-    .command("init")
+    .command('init')
     .alias 'new'
-    .description("Create a new project")
+    .description('Create a new project')
     .action () ->
         genProject.parseInput()
 
 program
-    .command("makefile")
-    .description("Generate Makefile")
+    .command('makefile')
+    .description('Generate Makefile')
     .action ->
         parseFile (err, project) ->
             if err?
@@ -56,8 +56,8 @@ program
                         makefile project, files
 
 program
-    .command("header")
-    .description("Generate header file")
+    .command('header')
+    .description('Generate header file')
     .action ->
         parseFile (err, project) ->
             if err?
@@ -68,16 +68,10 @@ program
                         console.error err.red
                     else
                         header project, files
-# program
-#    .command("replace <arg1> <arg2> <path>")
-#    .description("Bleh")
-#    .action (arg1, arg2, path) ->
-#         console.log
-#         replace(arg1, arg2, path)
 
 program
-   .command("*")
-   .description("unknown command")
+   .command ' *'
+   .description('unknown command')
    .action ->
         console.log "Unknown command see #{process.argv[1].split('/').pop()} --help"
 
