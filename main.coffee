@@ -21,7 +21,7 @@ parseFile = (callback) ->
             callback err
         if not project.mail?
             project['mail'] = "#{project.login}@epitech.eu"
-        if project.name? and project.binary? and project.login?
+        if project.name? and project.binary? and project.login? and project.lang?
             callback null, project
         else
             err = 'Error : Missing data in .project'
@@ -52,7 +52,7 @@ program
                     if err?
                         console.error err.red
                     else
-                        makefile(project, files)
+                        makefile project, files
 
 program
     .command("header")
@@ -66,7 +66,7 @@ program
                     if err?
                         console.error err.red
                     else
-                        header(project, files)
+                        header project, files
 # program
 #    .command("replace <arg1> <arg2> <path>")
 #    .description("Bleh")
