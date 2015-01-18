@@ -14,9 +14,9 @@
   "dependencies": {
     "coffee-script": "^1.8.0",
     "colors": "^1.0.3",
-    "commander": "^2.3.0",
-    "moment": "^2.8.4",
-    "recursive-readdir": "^1.2.0"
+    "commander": "^2.6.0",
+    "moment": "^2.9.0",
+    "recursive-readdir": "^1.2.1"
   },
   "repository": {
     "type": "git",
