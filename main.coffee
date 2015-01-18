@@ -35,7 +35,8 @@ program
    .usage('<command> [<args>]')
 
 program
-    .command("new")
+    .command("init")
+    .alias 'new'
     .description("Create a new project")
     .action () ->
         genProject.parseInput()
