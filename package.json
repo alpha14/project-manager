@@ -1,10 +1,10 @@
 {
-  "name": "tekinator",
+  "name": "Equilibre Project Manager",
   "version": "1.0.0",
   "description": "",
-  "main": "./tek",
+  "main": "./epm",
   "scripts": {
-    "start": "./tek"
+    "start": "./epm"
   },
   "author": [
     "Alpha14",
@@ -20,6 +20,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/alpha14/tekinator.git"
+    "url": "http://github.com/alpha14/project-manager.git"
   }
 }
