@@ -11,12 +11,12 @@
 
 ##Installation
 ```bash
-git clone https://github.com/alpha14/tekinator.git && cd tekinator
+git clone https://github.com/alpha14/project-manager.git && cd project-manager
 npm install
 ```
 ## Usage
 
 ```bash
-./tek
+./epm
 ```
 
