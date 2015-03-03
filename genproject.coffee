@@ -16,7 +16,7 @@ module.exports =
         # Get login from env
         login = process.env.LOGIN or process.env.LOGNAME or process.env.USER
 
-        defaultCflags = '-W -Werror -Wall -Wextra -ansi -pedantic -I .'
+        defaultCflags = '-Werror -Wall -Wextra -I .'
         # Name of the directory
         defaultName = path.split('/').pop()
         rl.question "Project name: (#{defaultName}) ", (name) =>
