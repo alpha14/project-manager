@@ -70,7 +70,7 @@ program
                         header project, files
 
 program
-   .command ' *'
+   .command '*'
    .description('unknown command')
    .action ->
         console.log "Unknown command see #{process.argv[1].split('/').pop()} --help"
