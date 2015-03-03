@@ -21,7 +21,7 @@ module.exports = (project, files) ->
             rawContent = fs.readFileSync file, 'utf8'
             content = rawContent.split '\n'
             for value in content
-                if regex.test(value) and not ~value.indexOf("\tmain(")
+                if regex.test(value) and value not in list and not ~value.indexOf("\tmain(")
                     list.push value
 
     if list.length is 0
