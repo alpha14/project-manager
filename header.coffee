@@ -15,7 +15,7 @@ module.exports = (project, files) ->
 
     console.log "Creating the header file #{projectName}.#{ext} ...".blue
     list = []
-    regex = /.*\t.*\(.*\)/g
+    regex = /([\w.-]+)\t.*([\w.-]+)\(.*\)/g
     for file in files
         if file.substring(file.length - (lang.length + 1), file.length) is '.' + lang
             rawContent = fs.readFileSync file, 'utf8'
