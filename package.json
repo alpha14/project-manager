@@ -16,7 +16,8 @@
     "colors": "^1.0.3",
     "commander": "^2.6.0",
     "moment": "^2.9.0",
-    "recursive-readdir": "^1.2.1"
+    "recursive-readdir": "^1.2.1",
+    "shelljs": "^0.3.0"
   },
   "repository": {
     "type": "git",
