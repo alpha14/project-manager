@@ -1,3 +1,4 @@
+require 'shelljs/global'
 recursive = require 'recursive-readdir'
 fs = require 'fs'
 readline = require 'readline'
@@ -40,11 +41,12 @@ module.exports =
                             fileData = JSON.stringify data, null, 2
                             console.log "\n" + fileData
                             rl.question '\n\nIs this ok? (yes) ', (answer) =>
-                                rl.pause()
                                 answers = ['', 'y', 'ye', 'yes']
+                                rl.pause()
 
                                 if answer.toLowerCase() in answers
                                     @createFile fileData
+                                    @deployFiles(data)
                                 else
                                     console.log 'Aborted'.red
 
@@ -77,10 +79,14 @@ module.exports =
                             console.error 'Fatal error : Project language unknown'.red
                             process.exit 1
 
-    createFile: (fileData) ->
+    createFile: (fileData, cb) ->
 
         fs.writeFile path + '/' + '.project', fileData, (err) ->
             if err?
                 console.error err.red
             else
-                console.log 'Project created'.green
+                console.log 'Project created\n'.green
+
+    deployFiles: (project) ->
+        "#{project.login}\n".to('auteur');
+        "#{project.binary}\n.project\n*.o\n*~\n".to('.gitignore');
