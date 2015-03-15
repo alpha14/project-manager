@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "./epm",
+  "bin": {
+	"epm": "epm"
+  },
+  "preferGlobal": "true",
   "scripts": {
     "start": "./epm"
   },
