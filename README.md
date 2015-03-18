@@ -1,4 +1,4 @@
-## Work in progress
+## Equilibre Project Manager
 
 - Generate Makefile, Headers and a new project.
 - Check for coding style errors
@@ -12,11 +12,11 @@
 ##Installation
 ```bash
 git clone https://github.com/alpha14/project-manager.git && cd project-manager
-npm install
+sudo npm install -g
 ```
 ## Usage
 
 ```bash
-./epm
+epm
 ```
 
