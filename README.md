@@ -1,9 +1,13 @@
 ## Equilibre Project Manager
 
+This is a work in progress, do not hesitate to submit issues and pull requests :)
+
+Functions:
 - Generate Makefile, Headers and a new project.
 - Check for coding style errors
 - Execute user defined tests
 - Search for common coding errors
+
 
 ## Requirements
 - Nodejs
@@ -17,6 +21,6 @@ sudo npm install -g
 ## Usage
 
 ```bash
-epm
+epm <command> [<args>]
 ```
 
