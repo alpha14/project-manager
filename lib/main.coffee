@@ -70,6 +70,15 @@ program
                         header project, files
 
 program
+    .command('norme <dir>')
+    .description('Check for norm errors')
+    .action (dir) ->
+        if (exec "#{__dirname}/norme.py #{dir}").code != 0
+            echo 'Error: cannot launch script'
+            exit 1
+
+
+program
    .command '*'
    .description('unknown command')
    .action ->
