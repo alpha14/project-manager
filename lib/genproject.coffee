@@ -17,38 +17,36 @@ module.exports =
         # Get login from env
         login = process.env.LOGIN or process.env.LOGNAME or process.env.USER
 
-        defaultCflags = '-Werror -Wall -Wextra -I .'
+        defaultCflags = '-Werror -Wall -Wextra'
         # Name of the directory
         defaultName = path.split('/').pop()
         rl.question "Project name: (#{defaultName}) ", (name) =>
-
             rl.question "Binary name: (a.out) ", (binary) =>
+                rl.question "Headers directory: (.) ", (include) =>
+                    rl.question "CFlags: (#{defaultCflags}) ", (cflags) =>
+                        rl.question "LDFlags: (none) ", (ldflags) =>
 
-                rl.question "CFLAGS: (#{defaultCflags}) ", (cflags) =>
+                            @ProjectLanguage rl, (lang) =>
 
-                    rl.question "LDFLAGS: (none) ", (ldflags) =>
+                                data =
+                                name: if name is '' then defaultName else name
+                                binary: if binary is '' then 'a.out' else binary
+                                login: login
+                                lang: lang
+                                include: if include is '' then '.' else include
+                                cflags: if cflags is '' then defaultCflags else cflags
+                                ldflags: ldflags
 
-                        @ProjectLanguage rl, (lang) =>
-
-                            data =
-                            name: if name is '' then defaultName else name
-                            binary: if binary is '' then 'a.out' else binary
-                            login: login
-                            lang: lang
-                            cflags: if cflags is '' then defaultCflags else cflags
-                            ldflags: ldflags
-
-                            fileData = JSON.stringify data, null, 2
-                            console.log "\n" + fileData
-                            rl.question '\n\nIs this ok? (yes) ', (answer) =>
-                                answers = ['', 'y', 'ye', 'yes']
-                                rl.pause()
-
-                                if answer.toLowerCase() in answers
-                                    @createFile fileData
-                                    @deployFiles(data)
-                                else
-                                    console.log 'Aborted'.red
+                                fileData = JSON.stringify data, null, 2
+                                console.log "\n" + fileData
+                                rl.question '\n\nIs this ok? (yes) ', (answer) =>
+                                    answers = ['', 'y', 'ye', 'yes']
+                                    rl.pause()
+                                    if answer.toLowerCase() in answers
+                                        @createFile fileData
+                                        @deployFiles(data)
+                                    else
+                                        console.log 'Aborted'.red
 
     ProjectLanguage: (rl, callback) ->
         recursive path, (err, files) ->

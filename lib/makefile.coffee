@@ -11,6 +11,7 @@ module.exports = (project, files) ->
     CFLAGS = project.cflags
     LDFLAGS = project.ldflags
     lang = project.lang
+    include = project.include
 
     if lang is 'c'
         ext = '.c'
@@ -40,9 +41,12 @@ module.exports = (project, files) ->
 
     if CFLAGS? and CFLAGS isnt ""
         if lang is 'cpp'
-            data += "CXXFLAGS=\t#{CFLAGS}\n\n"
+            data += "CXXFLAGS"
         else
-            data += "CFLAGS\t=\t#{CFLAGS}\n\n"
+            data += "CFLAGS"
+        data += "\t+=\t#{CFLAGS}\n\n"
+        if include? and include isnt ""
+            data += "CFLAGS\t+=\t-I #{include}\n\n"
 
     if LDFLAGS? and LDFLAGS isnt ""
         data += "LDFLAGS\t=\t#{LDFLAGS}\n\n"

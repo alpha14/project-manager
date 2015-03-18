@@ -7,6 +7,7 @@ module.exports = (project, files) ->
 
     projectName = project.name
     lang = project.lang
+    include = project.include
 
     if lang is 'c'
         ext = 'h'
@@ -36,7 +37,12 @@ module.exports = (project, files) ->
         data += "#{item};\n"
     data += "\n#endif /* !#{projectName.toUpperCase()}_#{ext.toUpperCase()}_ */"
 
-    fs.writeFile path + '/' + "#{projectName}.#{ext}", data, (err) ->
+    if include? and include isnt "."
+        filepath = path + '/' + include + '/' + "#{projectName}.#{ext}"
+    else
+        filepath = path + '/' + "#{projectName}.#{ext}"
+
+    fs.writeFile filepath, data, (err) ->
         if err?
             console.error err.red
             process.exit 1
